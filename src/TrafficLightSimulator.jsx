@@ -32,16 +32,23 @@ const css = `
 .tl-base { width: 80px; height: 14px; background: #333; border-radius: 4px; margin: 0 auto; }
 `;
 
+const LIGHTS = ["red", "yellow", "green"];
+
 export default function TrafficLightSimulator() {
+  const current = 0; // hardcoded for now, logic comes next
+
   return (
     <>
       <style>{css}</style>
       <div className="tl-wrap">
         <h2>Traffic Light Simulator</h2>
         <div className="tl-casing">
-          <div className="tl-light tl-red" />
-          <div className="tl-light tl-yellow" />
-          <div className="tl-light tl-green" />
+          {LIGHTS.map((color, index) => (
+            <div
+              key={color}
+              className={`tl-light tl-${color} ${index === current ? "active" : ""}`}
+            />
+          ))}
         </div>
         <div className="tl-post" />
         <div className="tl-base" />
